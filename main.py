@@ -27,20 +27,24 @@ def move_human(keys):
     sprite.move_at_angle_dir(live1, 5)
     if wrap.K_RIGHT in keys:
         sprite.set_reverse_x(live1, False)
+        if sprite.is_collide_sprite(live1, wall_experement1):
+            sprite.move_right_to(live1, leftw)
     else:
         sprite.set_reverse_x(live1, True)
-    if sprite.is_collide_sprite(live1, wall_experement1):
-        sprite.move_right_to(live1, leftw)
-    if sprite.is_collide_sprite(live1,wall_experement1):
-        sprite.move_left_to(live1,rightw)
+        if sprite.is_collide_sprite(live1, wall_experement1):
+            sprite.move_left_to(live1, rightw)
+
 @wrap.on_key_always(wrap.K_UP, wrap.K_DOWN)
 def move_humanupdown(keys):
     if wrap.K_UP in keys:
         sprite.set_costume(live1, "human2")
         sprite.move_at_angle(live1, 0, 5)
+        if sprite.is_collide_sprite(live1, wall_experement1):
+            sprite.move_top_to(live1, bottomw)
     else:
         sprite.set_costume(live1, "human1")
         sprite.move_at_angle(live1, 180, 5)
-
+        if sprite.is_collide_sprite(live1, wall_experement1):
+            sprite.move_bottom_to(live1, topw)
 
 
