@@ -10,7 +10,7 @@ def sozdanie_many_wallsx(x_wall,y_wall,num_wall):
         made_wall= sprite.add("wall", x_wall, y_wall, "wall")
         sprite_id = sprite_id + 1
         all_id_walls.append(made_wall)
-        print(all_id_walls)
+
         if sprite_id == num_wall:
             break
 
@@ -21,7 +21,7 @@ def sozdanie_many_wallsy(x_wall,y_wall,num_wall):
         made_wall = sprite.add("wall", x_wall, y_wall, "wall")
         sprite_id = sprite_id + 1
         all_id_walls.append(made_wall)
-        print(all_id_walls)
+
         if sprite_id == num_wall:
             break
 
