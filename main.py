@@ -18,10 +18,39 @@ angle = sprite.get_angle(live1)
 # walls.sozdanie_many_wallsy(280, 500, 6)
 # walls.sozdanie_many_wallsx(150, 280, 2)
 
-walls.wall("     XXXXX     XXXXX     ")
-walls.wall("     X   X     X   X     ")
-
-
+walls.wall("     XXXXX     XXXXX              ")
+walls.wall("     X   X     X   X              ")
+walls.wall("    XX   XXXXXXX   XX             ")
+walls.wall("XXXXX       X       XXXXXXXXXXXXXX")
+walls.wall("X           X                    X")
+walls.wall("X           X                    X")
+walls.wall("XXXXX       X                    X")
+walls.wall("X           XXXXXXXXXX     XXXXXXX")
+walls.wall("X           X                    X")
+walls.wall("XXXXXXXXX   X                    X")
+walls.wall("X           X                    X")
+walls.wall("X           X            X   XXXXX")
+walls.wall("X                        X       X")
+walls.wall("X                        X       X")
+walls.wall("XXXXXXXXXXXXX            XXXXXXXXX")
+walls.wall("X           X            X       X")
+walls.wall("X                                X")
+walls.wall("X                                X")
+walls.wall("XXXXXXXX  XXX     XXXXXXXXXXXXXXXX")
+walls.wall("XXXXXXXX  XXX         X        XXX")
+walls.wall("XXXXXXXX  XXX         X        XXX")
+walls.wall("XXXX        X         X        XXX")
+walls.wall("XXXX        X       XXXXX      XXX")
+walls.wall("XXXX        X                  XXX")
+walls.wall("XXXXXXX  XXXX                  XXX")
+walls.wall("XXXXXXX  XXXX       XXXXX      XXX")
+walls.wall("XXXXXXX  XXXX         X        XXX")
+walls.wall("XX         XX         X        XXX")
+walls.wall("XX         XX         X        XXX")
+walls.wall("XXXXXXXXXXXXX     XXXXXXXXXXXXXXXX")
+walls.wall("X                                X")
+walls.wall("X                                X")
+walls.wall(" XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX ")
 sprite.set_angle(live1, 90)
 
 
@@ -57,7 +86,7 @@ def analis_wallonthedown():
 @wrap.on_key_always(wrap.K_LEFT, wrap.K_RIGHT)
 def move_human(keys):
     sprite.set_costume(live1, "human3")
-    print(sprite.get_width(live1))
+
 
     if wrap.K_RIGHT in keys:
         sprite.set_reverse_x(live1, False)
@@ -78,6 +107,6 @@ def move_humanupdown(keys):
         analis_wallontheup()
     else:
         sprite.set_costume(live1, "human1")
-        print(sprite.get_width(live1))
+
         sprite.move_at_angle(live1, 180, 5)
         analis_wallonthedown()
