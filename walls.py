@@ -24,4 +24,15 @@ def sozdanie_many_wallsy(x_wall,y_wall,num_wall):
 
         if sprite_id == num_wall:
             break
+y=16
+def wall(s):
+    global y
+    a=0
+    for b in s:
+        if b=="X":
+            made_wall=sprite.add("wall",a,y,"wall")
+            all_id_walls.append(made_wall)
+        a+=30
+    y+=30
+
 
