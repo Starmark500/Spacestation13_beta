@@ -5,6 +5,22 @@ wrap.add_sprite_dir("my_sprites")
 world.create_world(1000, 1000)
 live1 = sprite.add("human", 200, 200, "human1")
 angle = sprite.get_angle(live1)
+a = [100, 200]
+
+def spawn_beggars(a):
+    b = a[0]
+    c = a[1]
+    sprite.add("human", b, c, "human1")
+
+form=[[400,200],[400,300]]
+form2=[[500,500],[100,100],[200,200]]
+def hhh(b):
+    for t in b:
+        spawn_beggars(t)
+spawn_beggars(a)
+hhh(form2)
+hhh(form)
+
 # walls.sozdanie_many_wallsx(100, 100, 6)
 #
 # walls.sozdanie_many_wallsy(100, 70, 7)
@@ -82,11 +98,9 @@ def analis_wallonthedown():
         sprite.move_bottom_to(live1, topw)
 
 
-
 @wrap.on_key_always(wrap.K_LEFT, wrap.K_RIGHT)
 def move_human(keys):
     sprite.set_costume(live1, "human3")
-
 
     if wrap.K_RIGHT in keys:
         sprite.set_reverse_x(live1, False)
@@ -110,3 +124,10 @@ def move_humanupdown(keys):
 
         sprite.move_at_angle(live1, 180, 5)
         analis_wallonthedown()
+
+
+a = [1, 2]
+
+
+def spawn_beggars(a):
+    print(a)
