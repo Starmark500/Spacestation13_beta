@@ -1,22 +1,44 @@
 from wrap import sprite, world, sprite_text
-import wrap, walls
+import wrap, walls, random
 
 wrap.add_sprite_dir("my_sprites")
 world.create_world(1000, 1000)
 live1 = sprite.add("human", 200, 200, "human1")
 angle = sprite.get_angle(live1)
 a = [100, 200]
+all_human = []
+
 
 def spawn_beggars(a):
     b = a[0]
     c = a[1]
-    sprite.add("human", b, c, "human1")
+    make_human = sprite.add("human", b, c, "human1")
 
-form=[[400,200],[400,300]]
-form2=[[500,500],[100,100],[200,200]]
+    all_human.append([make_human,random.choice([90,180,-90,0])])
+    print(all_human)
+
+
+form = [[400, 200], [400, 300]]
+form2 = [[500, 500], [100, 100], [200, 200]]
+
+
 def hhh(b):
     for t in b:
         spawn_beggars(t)
+
+
+@wrap.always(50)
+def all_move():
+    g=all_human[0]
+    s=all_human[1]
+    for k in all_human:
+        sprite.set_angle(k,s)
+        sprite.move_at_angle_dir(g,5)
+
+
+
+
+
 spawn_beggars(a)
 hhh(form2)
 hhh(form)
@@ -116,6 +138,7 @@ def move_human(keys):
 @wrap.on_key_always(wrap.K_UP, wrap.K_DOWN)
 def move_humanupdown(keys):
     if wrap.K_UP in keys:
+
         sprite.set_costume(live1, "human2")
         sprite.move_at_angle(live1, 0, 5)
         analis_wallontheup()
