@@ -14,7 +14,7 @@ def spawn_beggars(a):
     c = a[1]
     make_human = sprite.add("human", b, c, "human1")
 
-    all_human.append([make_human,random.choice([90,180,-90,0])])
+    all_human.append([make_human, random.choice([90, 180, -90, 0])])
     print(all_human)
 
 
@@ -27,21 +27,16 @@ def hhh(b):
         spawn_beggars(t)
 
 
-@wrap.always(50)
-def all_move():
-    g=all_human[0]
-    s=all_human[1]
-    for k in all_human:
-        sprite.set_angle(k,s)
-        sprite.move_at_angle_dir(g,5)
-
-
-
-
-
-spawn_beggars(a)
 hhh(form2)
 hhh(form)
+spawn_beggars(a)
+
+
+# all_human=[[0,90],[1,180],[2,-90]]
+
+
+
+
 
 # walls.sozdanie_many_wallsx(100, 100, 6)
 #
@@ -92,65 +87,74 @@ walls.wall(" XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX ")
 sprite.set_angle(live1, 90)
 
 
-def analis_wallontheright():
-    red_wall = sprite.is_collide_any_sprite(live1, walls.all_id_walls)
+def analis_wallontheright(id):
+    red_wall = sprite.is_collide_any_sprite(id, walls.all_id_walls)
     if red_wall != None:
         leftw = sprite.get_left(red_wall)
-        sprite.move_right_to(live1, leftw)
+        sprite.move_right_to(id, leftw)
 
 
-def analis_wallontheleft():
-    red_wall = sprite.is_collide_any_sprite(live1, walls.all_id_walls)
+def analis_wallontheleft(id):
+    red_wall = sprite.is_collide_any_sprite(id, walls.all_id_walls)
     if red_wall != None:
         rightw = sprite.get_right(red_wall)
-        sprite.move_left_to(live1, rightw)
+        sprite.move_left_to(id, rightw)
 
 
-def analis_wallontheup():
-    red_wall = sprite.is_collide_any_sprite(live1, walls.all_id_walls)
+def analis_wallontheup(id):
+    red_wall = sprite.is_collide_any_sprite(id, walls.all_id_walls)
     if red_wall != None:
         bottomw = sprite.get_bottom(red_wall)
-        sprite.move_top_to(live1, bottomw)
+        sprite.move_top_to(id, bottomw)
 
 
-def analis_wallonthedown():
-    red_wall = sprite.is_collide_any_sprite(live1, walls.all_id_walls)
+def analis_wallonthedown(id):
+    red_wall = sprite.is_collide_any_sprite(id, walls.all_id_walls)
     if red_wall != None:
         topw = sprite.get_top(red_wall)
-        sprite.move_bottom_to(live1, topw)
+        sprite.move_bottom_to(id, topw)
 
+
+
+
+def move_human(id, angle, distance):
+    if angle == 0:
+        sprite.set_costume(id, "human2")
+        sprite.move_at_angle(id, angle, distance)
+        analis_wallontheup(id)
+    if angle == 180:
+        sprite.set_costume(id, "human1")
+        sprite.move_at_angle(id, angle, distance)
+        analis_wallonthedown(id)
+    if angle == 90:
+        sprite.set_costume(id, "human3")
+        sprite.move_at_angle(id, angle, distance)
+        analis_wallontheright(id)
+    if angle == -90:
+        sprite.set_costume(id, "human4")
+        sprite.move_at_angle(id, angle, distance)
+        analis_wallontheleft(id)
+
+@wrap.always(50)
+def all_move():
+    for k in all_human:
+        g = k[0]
+        s = k[1]
+        move_human(g,s,5)
 
 @wrap.on_key_always(wrap.K_LEFT, wrap.K_RIGHT)
-def move_human(keys):
-    sprite.set_costume(live1, "human3")
-
+def move_humun(keys):
     if wrap.K_RIGHT in keys:
-        sprite.set_reverse_x(live1, False)
-        sprite.move_at_angle_dir(live1, 5)
-        analis_wallontheright()
+        move_human(live1,90,5)
 
     else:
-        sprite.set_reverse_x(live1, True)
-        sprite.move_at_angle_dir(live1, 5)
-        analis_wallontheleft()
+        move_human(live1,-90,5)
 
 
 @wrap.on_key_always(wrap.K_UP, wrap.K_DOWN)
 def move_humanupdown(keys):
     if wrap.K_UP in keys:
-
-        sprite.set_costume(live1, "human2")
-        sprite.move_at_angle(live1, 0, 5)
-        analis_wallontheup()
+        move_human(live1,0,5)
     else:
-        sprite.set_costume(live1, "human1")
+       move_human(live1,180,5)
 
-        sprite.move_at_angle(live1, 180, 5)
-        analis_wallonthedown()
-
-
-a = [1, 2]
-
-
-def spawn_beggars(a):
-    print(a)
