@@ -47,3 +47,6 @@ def move_human(id, angle, distance):
         sprite.set_costume(id, "human4")
         sprite.move_at_angle(id, angle, distance)
         analis_wallontheleft(id)
+
+def angle_human_change(human,angle):
+    human[1]=angle
