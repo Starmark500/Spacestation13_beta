@@ -16,7 +16,13 @@ def spawn_beggars(a):
     c = a[1]
     make_human = sprite.add("human", b, c, "human1")
 
-    all_human.append([make_human, random.choice([90, 180, -90, 0])])
+    all_human.append(
+        [
+            make_human,
+            random.choice([90, 180, -90, 0]),
+            1.5
+        ]
+    )
 
 
 form = [[400, 200], [400, 300]]
@@ -58,8 +64,19 @@ def move_humanupdown(keys):
     else:
         alien.move_human(live1, 180, 5)
 
-@wrap.always(2000)
+@wrap.always(100)
 def andle_change():
+
     for human in all_human:
-        alien.angle_human_change(human,random.choice([90, 180, -90, 0]))
+        human[2]-=0.1
+    print(
+        all_human
+    )
+
+
+
+
+
+     # for human in all_human:
+     #    alien.angle_human_change(human,random.choice([90, 180, -90, 0]))
 
