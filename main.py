@@ -11,7 +11,7 @@ a = [100, 200]
 all_human = []
 
 
-def spawn_beggars(a):
+def spawn_beggars(a,sec):
     b = a[0]
     c = a[1]
     make_human = sprite.add("human", b, c, "human1")
@@ -20,7 +20,7 @@ def spawn_beggars(a):
         [
             make_human,
             random.choice([90, 180, -90, 0]),
-            1.5
+            sec
         ]
     )
 
@@ -31,12 +31,12 @@ form2 = [[500, 500], [500,200], [200, 200]]
 
 def hhh(b):
     for t in b:
-        spawn_beggars(t)
+        spawn_beggars(t,0.1)
 
 
 hhh(form2)
 hhh(form)
-spawn_beggars(a)
+spawn_beggars(a,0.5)
 sprite.set_angle(live1, 90)
 
 
@@ -69,6 +69,15 @@ def andle_change():
 
     for human in all_human:
         human[2]-=0.1
+        if human[2] <= 0:
+            human[1]=random.choice([0,90,-90,180])
+            human[2]=random.randint(1,3)
+
+
+
+
+
+
     print(
         all_human
     )
