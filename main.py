@@ -7,7 +7,7 @@ import walls, random, human as alien, levels
 
 live1 = sprite.add("human", 200, 200, "human1")
 angle = sprite.get_angle(live1)
-a = [100, 200]
+
 all_human = []
 
 
@@ -25,8 +25,8 @@ def spawn_beggars(a,sec):
     )
 
 
-form = [[400, 200], [400, 300]]
-form2 = [[500, 500], [500,200], [200, 200]]
+form = [[400, 200]]
+# form2 = [[500, 500], [500,200], [200, 200],[400, 300]]
 
 
 def hhh(b):
@@ -34,19 +34,21 @@ def hhh(b):
         spawn_beggars(t,0.1)
 
 
-hhh(form2)
+# hhh(form2)
 hhh(form)
-spawn_beggars(a,0.5)
+
 sprite.set_angle(live1, 90)
 
 
 @wrap.always(50)
 def all_move():
+    print(all_human)
     for k in all_human:
         g = k[0]
         s = k[1]
-        alien.move_human(g, s, 5)
-
+        sdvig=alien.move_human(g, s, 5)
+        if sdvig==True:
+            k[1]=s-180
 
 @wrap.on_key_always(wrap.K_LEFT, wrap.K_RIGHT)
 def move_humun(keys):
@@ -65,27 +67,9 @@ def move_humanupdown(keys):
         alien.move_human(live1, 180, 5)
 
 @wrap.always(100)
-def andle_change():
+def angle_and_time_change():
 
     for human in all_human:
-        human[2]-=0.1
-        if human[2] <= 0:
-            human[1]=random.choice([0,90,-90,180])
-            human[2]=random.randint(1,3)
+       alien.random_time_and_angle(human)
 
-
-
-
-
-
-    print(
-        all_human
-    )
-
-
-
-
-
-     # for human in all_human:
-     #    alien.angle_human_change(human,random.choice([90, 180, -90, 0]))
 
