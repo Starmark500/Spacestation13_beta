@@ -38,7 +38,9 @@ def analis_wallonthedown(id):
         return False
 
 def move_human(id, angle, distance):
-    if angle == 0:
+    angle = angle%360
+    print(angle)
+    if angle == 0 :
         sprite.set_costume(id, "human2")
         sprite.move_at_angle(id, angle, distance)
         return analis_wallontheup(id)
@@ -48,11 +50,11 @@ def move_human(id, angle, distance):
         sprite.move_at_angle(id, angle, distance)
         return analis_wallonthedown(id)
 
-    if angle == 90:
+    if angle == 90 :
         sprite.set_costume(id, "human3")
         sprite.move_at_angle(id, angle, distance)
         return analis_wallontheright(id)
-    if angle == -90:
+    if angle == -90 or angle == 270:
         sprite.set_costume(id, "human4")
         sprite.move_at_angle(id, angle, distance)
         return analis_wallontheleft(id)

@@ -25,8 +25,8 @@ def spawn_beggars(a,sec):
     )
 
 
-form = [[400, 200]]
-# form2 = [[500, 500], [500,200], [200, 200],[400, 300]]
+form = [[400, 150]]
+form2 = [[500, 500], [500,200], [200, 200],[400, 300]]
 
 
 def hhh(b):
@@ -34,7 +34,7 @@ def hhh(b):
         spawn_beggars(t,0.1)
 
 
-# hhh(form2)
+hhh(form2)
 hhh(form)
 
 sprite.set_angle(live1, 90)
@@ -42,7 +42,6 @@ sprite.set_angle(live1, 90)
 
 @wrap.always(50)
 def all_move():
-    print(all_human)
     for k in all_human:
         g = k[0]
         s = k[1]
